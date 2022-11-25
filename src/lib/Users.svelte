@@ -4,6 +4,7 @@
   import user3 from '../assets/images/man.png';
   import User from './User.svelte';
   import FilterUser from './FilterUser.svelte';
+  import NewUser from './NewUser.svelte';
   
   let users = [
     {
@@ -45,7 +46,12 @@ const remove = ({detail}) => {
 }
     
 </script>
- <FilterUser on:filter={filter}/>
+<div class="flex justify-between mx-4">
+  <FilterUser on:filter={filter}/>
+
+  <NewUser />
+</div>
+
 <div>
   <h1 class="text-2xl text-center mt-10">List of all users</h1>
   {#each filteredUser as user, i (user.id)}

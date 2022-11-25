@@ -44,18 +44,27 @@ const filter = (value) => {
 const remove = ({detail}) => {
   users = users.filter((user) => user.id !== detail)
 }
+
+const addUser = ({detail}) => {
+  users = [{
+    id:users.length+1,
+    icon: user1, 
+    ...detail
+  },
+  ...users]
+}
     
 </script>
 <div class="flex justify-between mx-4">
   <FilterUser on:filter={filter}/>
 
-  <NewUser />
+  <NewUser on:newUser={addUser}/>
 </div>
 
 <div>
   <h1 class="text-2xl text-center mt-10">List of all users</h1>
   {#each filteredUser as user, i (user.id)}
-  <User on:remove={remove} {user} i={i}/>
+  <User on:remove={remove} {user} {i}/>
   {:else}
   <p>No User Found!!!</p>
   {/each}
